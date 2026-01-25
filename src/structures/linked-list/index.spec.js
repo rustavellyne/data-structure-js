@@ -36,5 +36,24 @@ describe('Linked List', () => {
     expect(list.get(1)).toBe(6);
     expect(list.get(2)).toBe(7);
   });
+  test('pop() throws when list is empty', () => {
+    expect(() => list.pop()).toThrowError();
+  });
+  test('pop() removes the only element make list empty and returns value', () => {
+    list.push(1);
+    const result = list.pop();
+    expect(result).toBe(1);
+    expect(list.isEmpty()).toBe(true);
+    expect(() => list.get(0)).toThrowError();
+  });
+  test('pop() preserves the remaining order', () => {
+    list.push(1).push(2).push(3);
+    const result = list.pop();
+    expect(result).toBe(3);
+    console.log(list)
+    expect(list.get(0)).toBe(1);
+    expect(list.get(1)).toBe(2);
+    expect(() => list.get(2)).toThrowError();
+  });
 })
 

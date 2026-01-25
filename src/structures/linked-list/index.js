@@ -29,14 +29,36 @@ class LinkedList {
     return this;
   }
 
+  pop () {
+    if (this.isEmpty()) {
+      throw new Error('list is empty');
+    }
+    const node = this.tail;
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+    } else {
+      let prev = this.head;
+      while (prev.next !== this.tail) {
+        prev = prev.next; 
+      }
+      this.tail = prev;
+      prev.next = null;
+      this.length--;
+    }
+
+    return node.value;
+  }
+
   get (index) {
     if (index >= this.length || index < 0) {
       throw new Error('Index is out of range');
     }
     let counter = 0;
     let currentNode = this.head;
-    while (counter < index && currentNode.next) {
-       currentNode = currentNode.next;
+    while (counter !== index && currentNode.next) {
+      currentNode = currentNode.next;
       counter++;
     }
 
