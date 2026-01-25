@@ -4,7 +4,10 @@
   "description": "data strucrure for JS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "bun run index.js",
+    "dev": "bun --watch index.js",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
   },
   "author": "",
   "license": "ISC"
