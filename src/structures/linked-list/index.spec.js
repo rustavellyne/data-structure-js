@@ -50,7 +50,6 @@ describe('Linked List', () => {
     list.push(1).push(2).push(3);
     const result = list.pop();
     expect(result).toBe(3);
-    console.log(list)
     expect(list.get(0)).toBe(1);
     expect(list.get(1)).toBe(2);
     expect(() => list.get(2)).toThrowError();
