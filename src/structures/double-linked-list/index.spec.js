@@ -37,4 +37,15 @@ describe('Double Linked List', () => {
     expect(list.isEmpty()).toBe(true);
     expect(list.length).toBe(0);
   });
+  it('adds value to begining of empty list', () => {
+    list.unshift(10);
+    expect(list.length).toBe(1);
+    expect(list.pop()).toBe(10);
+    expect(list.length).toBe(0);
+  });
+  it('adds value to beging of list', () => {
+    list.unshift(10).unshift(20);
+    expect(list.length).toBe(2);
+    expect(list.pop()).toBe(10);
+  });
 });

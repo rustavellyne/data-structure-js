@@ -44,8 +44,20 @@ class DoubleLinkedList {
       this.tail = null;
     }
     node.prev = null;
-    node.next = null;
     return node.value;
+  }
+
+  unshift (value) {
+    const node = new Node(value);
+    if (this.head) {
+      this.head.prev = node;
+      node.next = this.head;
+    } else {
+      this.tail = node;
+    }
+    this.head = node;
+    this.length++;
+    return this;
   }
 }
 
