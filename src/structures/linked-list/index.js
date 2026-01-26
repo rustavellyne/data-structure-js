@@ -51,7 +51,7 @@ class LinkedList {
     return node.value;
   }
 
-  get (index) {
+  findNode (index) {
     if (index >= this.length || index < 0) {
       throw new Error('Index is out of range');
     }
@@ -61,8 +61,17 @@ class LinkedList {
       currentNode = currentNode.next;
       counter++;
     }
+    return currentNode;
+  }
 
-    return currentNode ? currentNode.value : null;
+  get (index) {
+    const node = this.findNode(index);
+    return node.value;
+  }
+
+  set(index, value) {
+    const node = this.findNode(index);
+    node.value = value;
   }
 
   unshift(value) {

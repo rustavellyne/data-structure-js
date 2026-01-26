@@ -87,7 +87,6 @@ describe('Linked List', () => {
     expect(list.length).toBe(1);
     expect(list.shift()).toBe(10);
     expect(list.length).toBe(0);
-    console.log(list)
     expect(list.isEmpty()).toBe(true);
     expect(() => list.get(0)).toThrowError();
   });
@@ -115,5 +114,37 @@ describe('Linked List', () => {
     expect(list.get(1)).toBe(30);
     expect(list.length).toBe(2);
   });
-})
+  test('set(index, value) throws when index out of range', () => {
+    list.push(10);
+    expect(() => list.set(-1, 99)).toThrowError();
+  });
+  test('set(index, value) updates value at index 0', () => {
+     list.push(10);
+     list.set(0, 99);
+     expect(list.get(0)).toBe(99);
+     expect(list.length).toBe(1);
+  });
+  test('set() updates head value without chaging order', () => {
+    list.push(10).push(20).push(30);
+    list.set(0, 111);
+    expect(list.get(0)).toBe(111);
+    expect(list.get(1)).toBe(20);
+    expect(list.get(2)).toBe(30);
+    expect(list.length).toBe(3);
+  });
+  test('set() updates in middle', () => { 
+    list.push(10).push(20).push(30);
+    list.set(1, 111);
+    expect(list.get(0)).toBe(10);
+    expect(list.get(1)).toBe(111);
+    expect(list.get(2)).toBe(30);
+    expect(list.length).toBe(3);
+  });
+  test('set() updates tail correctly', () => {
+    list.push(10).push(20).push(30);
+    list.set(list.length - 1, 111);
+    expect(list.pop()).toBe(111);
+  });
+});
+
 
