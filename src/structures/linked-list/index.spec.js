@@ -114,11 +114,11 @@ describe('Linked List', () => {
     expect(list.get(1)).toBe(30);
     expect(list.length).toBe(2);
   });
-  test('set(index, value) throws when index out of range', () => {
+  test('set() throws when index out of range', () => {
     list.push(10);
     expect(() => list.set(-1, 99)).toThrowError();
   });
-  test('set(index, value) updates value at index 0', () => {
+  test('set() updates value at index 0', () => {
      list.push(10);
      list.set(0, 99);
      expect(list.get(0)).toBe(99);
@@ -144,6 +144,7 @@ describe('Linked List', () => {
     list.push(10).push(20).push(30);
     list.set(list.length - 1, 111);
     expect(list.pop()).toBe(111);
+    expect(() => list.set(list.length, 100)).toThrowError();
   });
 });
 
