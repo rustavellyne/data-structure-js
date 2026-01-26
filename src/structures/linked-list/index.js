@@ -88,6 +88,21 @@ class LinkedList {
 
     return this;
   }
+  removeAt(index) {
+    if (this.isEmpty()) throw new Error('list is Empty');
+    if (index === 0) {
+      return this.shift();
+    }
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+    const prev = this.findNode(index - 1);
+    const removed = prev.next;
+    prev.next = removed.next;
+    removed.next = null;
+    this.length--;
+    return removed.value;
+  }
 
   unshift(value) {
     const newNode = new Node(value, this.head);

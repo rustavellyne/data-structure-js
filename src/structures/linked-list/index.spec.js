@@ -184,6 +184,44 @@ describe('Linked List', () => {
     expect(list.get(3)).toBe(40);
     expect(list.pop()).toBe(40);
   });
+  test('removeAt() throw error on empty list', () => {
+    expect(() => list.removeAt(0)).toThrowError();
+  });
+  test('removeAt() throws error if index out of range', () => {
+    list.push(5);
+    expect(() => list.removeAt(-1)).toThrowError();
+    expect(() => list.removeAt(10)).toThrowError();
+  });
+  test('removeAt() removes the only element and makes list empty', () => {
+    list.push(4);
+    expect(list.removeAt(0)).toBe(4);
+    expect(list.length).toBe(0);
+    expect(list.isEmpty()).toBe(true);
+  });
+
+  test('removeAt() removes the head and preserves order', () => {
+    list.push(10).push(20).push(30);
+    expect(list.removeAt(0)).toBe(10);
+    expect(list.length).toBe(2);
+    expect(list.get(0)).toBe(20);
+    expect(list.get(1)).toBe(30);
+  });
+  test('removeAt() removes the last element and updates tail', () => {
+    list.push(10).push(20).push(30);
+    expect(list.removeAt(list.length -1 )).toBe(30);
+    expect(list.length).toBe(2);
+    expect(list.get(1)).toBe(20);
+    expect(list.pop()).toBe(20);
+  });
+
+  test('removeAt() removes the middle element and preserves order', () => {
+    list.push(10).push(20).push(30).push(40);
+    expect(list.removeAt(2)).toBe(30);
+    expect(list.length).toBe(3);
+    expect(list.get(0)).toBe(10);
+    expect(list.get(1)).toBe(20);
+    expect(list.get(2)).toBe(40);
+  });
 });
 
 
