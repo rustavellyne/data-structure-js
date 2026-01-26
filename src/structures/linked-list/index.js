@@ -64,6 +64,14 @@ class LinkedList {
 
     return currentNode ? currentNode.value : null;
   }
+
+  unshift(value) {
+    const newNode = new Node(value, this.head);
+    this.head = newNode;
+    if (!this.tail) this.tail = newNode;
+    this.length++;
+    return this;
+  }
 }
 
 export { LinkedList };

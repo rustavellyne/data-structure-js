@@ -54,5 +54,30 @@ describe('Linked List', () => {
     expect(list.get(1)).toBe(2);
     expect(() => list.get(2)).toThrowError();
   });
+  test('unshift() adds the first element to an empty list', () => {
+    list.unshift(10).push(20);
+    expect(list.length).toBe(2);
+    expect(list.get(0)).toBe(10);
+    expect(list.get(1)).toBe(20);
+    expect(list.isEmpty()).toBe(false);
+    expect(list.pop()).toBe(20);
+    expect(list.pop()).toBe(10);
+    expect(list.isEmpty()).toBe(true);
+  });
+  test('unshift() prepends value and shifts elements right', ()=> {
+    list.push(20).push(30);
+    expect(list.length).toBe(2);
+    expect(list.get(0)).toBe(20);
+    list.unshift(10);
+    expect(list.length).toBe(3);
+    expect(list.get(0)).toBe(10);
+  });
+  test('unshift() preserves order across multiple prepends', () => {
+    list.unshift(30).unshift(20).unshift(10);
+    expect(list.length).toBe(3);
+    expect(list.get(0)).toBe(10);
+    expect(list.get(1)).toBe(20);
+    expect(list.get(2)).toBe(30);
+  });
 })
 
