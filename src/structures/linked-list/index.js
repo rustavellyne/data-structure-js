@@ -34,20 +34,19 @@ class LinkedList {
       throw new Error('list is empty');
     }
     const node = this.tail;
-    if (this.head === this.tail) {
+    if (this.length === 1) {
       this.head = null;
       this.tail = null;
-      this.length = 0;
     } else {
       let prev = this.head;
       while (prev.next !== this.tail) {
         prev = prev.next; 
       }
       this.tail = prev;
+      this.tail.next = null;
       prev.next = null;
-      this.length--;
     }
-
+    this.length--;
     return node.value;
   }
 
@@ -135,6 +134,7 @@ class LinkedList {
   reverse () {
     let prev = null;
     let current = this.head;
+    this.head = this.tail;
     this.tail = current;
     while (current) {
       let next = current.next;
@@ -142,7 +142,6 @@ class LinkedList {
       prev = current;
       current = next;
     }
-    this.head = prev;
   }
 }
 
