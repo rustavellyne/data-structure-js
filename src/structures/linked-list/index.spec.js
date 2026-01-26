@@ -146,6 +146,44 @@ describe('Linked List', () => {
     expect(list.pop()).toBe(111);
     expect(() => list.set(list.length, 100)).toThrowError();
   });
+  test('insert() throws when index is less than 0', () => {
+    list.push(1).push(2);
+    expect(() => list.insert(-1, 99)).toThrowError();
+  });
+  test('insert() throws when index is more than length', () => {
+    list.push(1).push(2);
+    expect(() => list.insert(3, 99)).toThrowError();
+  });
+  test('insert() inserts into empty list at index 0', () => {
+    list.insert(0, 99);
+    expect(list.length).toBe(1);
+    expect(list.get(0)).toBe(99);
+  });
+  test('insert() inserts at the head when index is 0', () => {
+    list.push(20).push(30);
+    list.insert(0, 10);
+    expect(list.length).toBe(3);
+    expect(list.get(0)).toBe(10);
+    expect(list.get(1)).toBe(20);
+    expect(list.get(2)).toBe(30);
+  });
+  test('insert() inserts at the tail when index equal length', () => {
+    list.push(10).push(20).push(30);
+    list.insert(list.length, 40);
+    expect(list.length).toBe(4);
+    expect(list.get(3)).toBe(40);
+  });
+  test('insert() inserts in the middle and preserves order', () => {
+    list.push(10).push(20).push(40);
+    expect(list.length).toBe(3);
+    list.insert(2, 30);
+    expect(list.length).toBe(4);
+    expect(list.get(0)).toBe(10);
+    expect(list.get(1)).toBe(20);
+    expect(list.get(2)).toBe(30);
+    expect(list.get(3)).toBe(40);
+    expect(list.pop()).toBe(40);
+  });
 });
 
 

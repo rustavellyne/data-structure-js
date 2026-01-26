@@ -73,6 +73,21 @@ class LinkedList {
     const node = this.findNode(index);
     node.value = value;
   }
+  insert (index, value) {
+    if (index === 0) {
+      return this.unshift(value);
+    }
+    if (index === this.length) {
+      return this.push(value);
+    }
+
+    const prev = this.findNode(index - 1);
+    const newNode = new Node(value, prev.next);
+    prev.next = newNode;
+    this.length++;
+
+    return this;
+  }
 
   unshift(value) {
     const newNode = new Node(value, this.head);
