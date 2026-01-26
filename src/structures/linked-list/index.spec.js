@@ -87,7 +87,8 @@ describe('Linked List', () => {
     expect(list.length).toBe(1);
     expect(list.shift()).toBe(10);
     expect(list.length).toBe(0);
-    expect(list.isEmpty(true));
+    console.log(list)
+    expect(list.isEmpty()).toBe(true);
     expect(() => list.get(0)).toThrowError();
   });
   test('shift() removes head and preserves order', () => {
@@ -111,6 +112,8 @@ describe('Linked List', () => {
     list.unshift(10).push(20).push(30);
     expect(list.shift()).toBe(10);
     expect(list.get(0)).toBe(20);
+    expect(list.get(1)).toBe(30);
+    expect(list.length).toBe(2);
   });
 })
 
