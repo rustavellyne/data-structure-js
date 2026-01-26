@@ -123,6 +123,27 @@ class LinkedList {
     this.length--;
     return node.value;
   }
+
+  print () {
+    let current = this.head;
+    while (current) {
+      console.log(current.value)
+      current = current.next;
+    }
+  }
+
+  reverse () {
+    let prev = null;
+    let current = this.head;
+    this.tail = current;
+    while (current) {
+      let next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+    this.head = prev;
+  }
 }
 
 export { LinkedList };

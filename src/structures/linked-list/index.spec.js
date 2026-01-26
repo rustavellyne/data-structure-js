@@ -222,6 +222,31 @@ describe('Linked List', () => {
     expect(list.get(1)).toBe(20);
     expect(list.get(2)).toBe(40);
   });
+  test('reverse() reverses list', () => {
+    list.push(1).push(2).push(3).push(4).push(5).push(6);
+    list.reverse();
+    expect(list.get(0)).toBe(6);
+    expect(list.get(1)).toBe(5);
+    expect(list.get(2)).toBe(4);
+    expect(list.get(3)).toBe(3);
+    expect(list.get(4)).toBe(2);
+    expect(list.get(5)).toBe(1);
+  });
+  test('reverse() reverses two elements', () => {
+    list.push(1).push(2);
+    list.reverse()
+    expect(list.get(0)).toBe(2);
+    expect(list.get(1)).toBe(1);
+  });
+  test('reverse() reverses 1 element', () => {
+    list.push(1);
+    list.reverse()
+    expect(list.get(0)).toBe(1);
+  });
+  test('reverse() empty arraay without error', () => {
+    list.reverse();
+    expect(list.isEmpty()).toBe(true);
+  })
 });
 
 
