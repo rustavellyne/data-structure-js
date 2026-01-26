@@ -79,5 +79,38 @@ describe('Linked List', () => {
     expect(list.get(1)).toBe(20);
     expect(list.get(2)).toBe(30);
   });
+  test('shift() throws when list is empty', () => {
+    expect(() => list.shift()).toThrowError();
+  });
+  test('shift() removes the only element and makes list empty', () => {
+    list.push(10);
+    expect(list.length).toBe(1);
+    expect(list.shift()).toBe(10);
+    expect(list.length).toBe(0);
+    expect(list.isEmpty(true));
+    expect(() => list.get(0)).toThrowError();
+  });
+  test('shift() removes head and preserves order', () => {
+    list.push(10).push(20);
+    expect(list.length).toBe(2);
+    expect(list.shift()).toBe(10);
+    expect(list.length).toBe(1);
+    expect(list.get(0)).toBe(20);
+    expect(list.pop()).toBe(20);
+    expect(list.isEmpty()).toBe(true);
+  });
+  test('shift() preserves order on multiple elements', () => {
+    list.push(10).push(20).push(30).push(40);
+    expect(list.shift()).toBe(10);
+    expect(list.get(0)).toBe(20);
+    expect(list.get(1)).toBe(30);
+    expect(list.get(2)).toBe(40);
+    expect(list.length).toBe(3);
+  });
+  test('shift() works after unshift', () => {
+    list.unshift(10).push(20).push(30);
+    expect(list.shift()).toBe(10);
+    expect(list.get(0)).toBe(20);
+  });
 })
 

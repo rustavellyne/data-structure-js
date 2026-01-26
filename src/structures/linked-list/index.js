@@ -72,6 +72,18 @@ class LinkedList {
     this.length++;
     return this;
   }
+
+  shift () {
+    if (this.isEmpty()) {
+      throw new Error('list is empty');
+    } 
+    const node = this.head;
+    this.head = node.next;
+    node.next = null;
+    if (!this.head) this.tail = null;
+    this.length--;
+    return node.value;
+  }
 }
 
 export { LinkedList };
