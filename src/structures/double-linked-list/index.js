@@ -132,10 +132,8 @@ class DoubleLinkedList {
     if (!node) return null;
     if (index === 0) return this.shift();
     if (index === this.length - 1) return this.pop();
-    const prev = node.prev;
-    const next = node.next;
-    prev.next = next;
-    next.prev = prev;
+    node.prev.next = node.next;
+    node.next.prev = node.prev;
     node.next = null;
     node.prev = null;
     this.length--;
