@@ -59,6 +59,46 @@ class DoubleLinkedList {
     this.length++;
     return this;
   }
+
+  shift () {
+    if (this.isEmpty()) return null;
+
+    const node = this.head;
+    this.head = node.next;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head.prev = null;
+    }
+    node.next = null;
+    this.length--;
+    
+    return node.value;
+  }
+  getNode (index) {
+    if (this.isEmpty() || index < 0 || index >= this.length) return null;
+    const tailIndex = this.length - 1 - index;
+    let strategy = 'next';
+    let current = this.head;
+    let counter = 0;
+    if (tailIndex < index) {
+      strategy = 'prev';
+      index = tailIndex;
+      current = this.tail;
+    }
+    console.log({ strategy, index })
+    while (counter < index) {
+      current = current[strategy];
+      counter++;
+    }
+
+    return current;
+  }
+  get(index) {
+    const node = this.getNode(index);
+    return node ? node.value : node;
+  }
 }
 
 export { DoubleLinkedList }
