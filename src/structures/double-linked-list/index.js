@@ -87,7 +87,6 @@ class DoubleLinkedList {
       index = tailIndex;
       current = this.tail;
     }
-    console.log({ strategy, index })
     while (counter < index) {
       current = current[strategy];
       counter++;
@@ -95,9 +94,47 @@ class DoubleLinkedList {
 
     return current;
   }
-  get(index) {
+  get (index) {
     const node = this.getNode(index);
     return node ? node.value : node;
+  }
+  set (index, value) {
+    const node = this.getNode(index);
+    if (!node) return false;
+    node.value = value;
+    return true;
+  }
+  insert (index, value) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) {
+      this.unshift(value);
+      return true;
+    }
+    if (index === this.length ) {
+      this.push(value);
+      return true;
+    }
+
+    const newNode = new Node(value);
+    const next = this.getNode(index);
+    const prev = next.prev;
+    
+    prev.next = newNode;
+    newNode.prev = prev;
+    newNode.next = next;
+    next.prev = newNode;
+    this.length++; 
+    return true;
+  }
+
+  print() {
+    let current = this.head;
+    let arr = [];
+    while (current) {
+      arr.push(current.value);
+      current = current.next;
+    }
+    console.log(arr);
   }
 }
 

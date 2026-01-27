@@ -72,5 +72,42 @@ describe('Double Linked List', () => {
   it('returns null on out of range list or empty list', () => {
     expect(list.get(-1)).toBeNull();
     expect(list.get(100)).toBeNull();
-  })
+  });
+  it('return null if index out of range or empty', () => {
+    expect(list.set(-1, 99)).toBeFalse();
+    expect(list.set(22, 99)).toBeFalse();
+  });
+  it('sets properly value to element at index', () => {
+    list.push(10).push(20).push(30);
+    expect(list.get(1)).toBe(20);
+    list.set(1, 99);
+    expect(list.get(1)).toBe(99);
+  });
+  it('does not insert element if index out of range', () => {
+    list.push(10).push(20);
+    expect(list.insert(-1, 99)).toBeFalse();
+    expect(list.insert(99, 99)).toBeFalse();
+  });
+  it('inserts element on first position of empty list', () => {
+    list.insert(0, 99);
+    expect(list.length).toBe(1);
+    expect(list.get(0)).toBe(99);
+  });
+  it('inserts element in the middle and preserves order', () => {
+    list.push(10).push(20);
+    list.insert(0, 5);
+    expect(list.length).toBe(3);
+    expect(list.get(0)).toBe(5);
+    expect(list.get(1)).toBe(10);
+    list.insert(list.length, 30);
+    expect(list.length).toBe(4)
+    expect(list.get(list.length - 1)).toBe(30);
+    list.insert(2, 15);
+    expect(list.length).toBe(5);
+    expect(list.get(0)).toBe(5);
+    expect(list.get(1)).toBe(10);
+    expect(list.get(2)).toBe(15);
+    expect(list.get(3)).toBe(20);
+    expect(list.get(4)).toBe(30);
+  });
 });
