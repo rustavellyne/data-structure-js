@@ -110,4 +110,21 @@ describe('Double Linked List', () => {
     expect(list.get(3)).toBe(20);
     expect(list.get(4)).toBe(30);
   });
+  it('returns null on index out of range when removing item', () => {
+    list.push(12);
+    expect(list.remove(-1)).toBeNull();
+    expect(list.remove(10)).toBeNull();
+    expect(list.remove(0)).toBe(12);
+    expect(list.isEmpty()).toBeTrue();
+    expect(list.remove(0)).toBeNull();
+  });
+  it('return item and preserve order', () => {
+    list.push(10).push(20).push(30).push(40);
+    expect(list.length).toBe(4);
+    expect(list.remove(2)).toBe(30);
+    expect(list.length).toBe(3);
+    expect(list.get(0)).toBe(10);
+    expect(list.get(1)).toBe(20);
+    expect(list.get(2)).toBe(40);
+  });
 });

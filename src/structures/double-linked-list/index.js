@@ -127,6 +127,21 @@ class DoubleLinkedList {
     return true;
   }
 
+  remove (index) {
+    const node = this.getNode(index);
+    if (!node) return null;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    const prev = node.prev;
+    const next = node.next;
+    prev.next = next;
+    next.prev = prev;
+    node.next = null;
+    node.prev = null;
+    this.length--;
+    return node.value;
+  }
+
   print() {
     let current = this.head;
     let arr = [];
