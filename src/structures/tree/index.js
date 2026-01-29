@@ -42,6 +42,54 @@ class Tree {
       return this.contains(value, current.right);
     }
   }
+
+  traverseBreadth () {
+    const result = [];
+    const queue = [this.root];
+    while (queue.length) {
+      const current = queue.shift();
+      result.push(current.value);
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+    }
+    return result;
+  }
+  dfsPreorder () {
+    const result = [];
+
+    const traverse = (currentNode) => {
+      result.push(currentNode.value);
+      if (currentNode.left) traverse(currentNode.left);
+      if (currentNode.right) traverse(currentNode.right);
+    }
+
+    traverse(this.root);
+    return result;
+  }
+
+  dfsPostorder () {
+    const result = [];
+    const traverse = (currentNode) => {
+      if (currentNode.left) traverse(currentNode.left);
+      if (currentNode.right) traverse(currentNode.right); 
+      result.push(currentNode.value);
+    }
+    traverse(this.root);
+
+    return result;
+  }
+  dfsInorder () {
+    const result = [];
+    
+    const traverse = (currentNode) => {
+      if (currentNode.left) traverse(currentNode.left);
+      result.push(currentNode.value);
+      if (currentNode.right) traverse(currentNode.right);
+    }
+    traverse(this.root)
+    return result;
+  } 
+  
 }
 
 export { Tree };

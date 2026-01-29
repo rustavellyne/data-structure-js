@@ -54,4 +54,36 @@ describe('Tree', () => {
     expect(tree.contains(82)).toBeTrue();
     expect(tree.contains(27)).toBeTrue();
   });
+  it('traverses breadth', () => {
+    tree.insert(47).insert(21).insert(76)
+      .insert(18).insert(52).insert(82)
+      .insert(27);
+    expect(tree.traverseBreadth()).toEqual(
+      [47, 21, 76, 18, 27, 52, 82]
+    )
+  });
+  it('traverses DFS preorder', () => {
+    tree.insert(47).insert(21).insert(76)
+      .insert(18).insert(52).insert(82)
+      .insert(27);
+    expect(tree.dfsPreorder()).toEqual(
+      [47, 21, 18, 27, 76, 52, 82]
+    )
+  });
+  it('traverses DFS post order', () => {
+    tree.insert(47).insert(21).insert(76)
+      .insert(18).insert(52).insert(82)
+      .insert(27);
+    expect(tree.dfsPostorder()).toEqual(
+      [18, 27, 21, 52, 82, 76, 47]
+    )
+  });
+  it('traverses DFS In order', () => {
+    tree.insert(47).insert(21).insert(76)
+      .insert(18).insert(52).insert(82)
+      .insert(27);
+    expect(tree.dfsInorder()).toEqual(
+      [18, 21, 27, 47, 52, 76, 82]
+    )
+  });
 });
